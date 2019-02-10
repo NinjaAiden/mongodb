@@ -17,9 +17,9 @@ conn = mongo_connection(MONGODB_URI)
 
 coll = conn[DBS_NAME][COLLECTION_NAME]
 
-coll.remove({'first': 'douglas'})
+coll.update_one({'nationality': 'american'}, {'$set': {'hair_colour': 'maroon'}})
 
-documents = coll.find()
+documents = coll.find({'nationality': 'american'})
 
 for doc in documents:
     print(doc)
