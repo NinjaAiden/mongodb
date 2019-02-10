@@ -67,6 +67,7 @@ def add_record():
 
 def find_record():
     doc = get_record()
+    
     if doc:
         print("")
         for k, v in doc.items():
@@ -75,6 +76,7 @@ def find_record():
 
 def edit_record():
     doc = get_record()
+    
     if doc:
         update_doc={}
         print("")
@@ -91,6 +93,27 @@ def edit_record():
             print("Document updated")
         except:
             print("Error accessing database")
+
+def delete_record():
+    doc = get_record()
+    
+    if doc:
+        print("")
+        for k,v in doc.items():
+            if k != "_id":
+                print(k.capitalize() + ": " + v.capitalize())
+        
+        print("")
+        confirmation = input("Is this the document you want to delete?\nY or N > ")
+        print("")
+        if confirmation.lower() == 'y':
+            try:
+                coll.remove(doc)
+                print("Document deleted")
+            except:
+                ("Error accessing database")
+        else:
+            print("Document not deleted")
 
 def main_loop():
     while True:
