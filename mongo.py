@@ -17,7 +17,9 @@ conn = mongo_connection(MONGODB_URI)
 
 coll = conn[DBS_NAME][COLLECTION_NAME]
 
-documents = coll.find({'first': 'douglas'})
+coll.remove({'first': 'douglas'})
+
+documents = coll.find()
 
 for doc in documents:
     print(doc)
